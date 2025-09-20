@@ -1,7 +1,7 @@
 "use client";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   TbBulb,
   TbCube3dSphere,
@@ -12,6 +12,33 @@ import {
 
 const ProfileDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   return (
     <Popover className="relative">
@@ -50,14 +77,25 @@ const ProfileDropdown = () => {
                   <span>Sign in</span>
                 </Link>
 
-                <div className="w-full border border-neutral-700" />
-                <Link
-                  href="/"
-                  className="flex items-center gap-3 px-3 py-2.5 text-sm text-neutral-800 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors rounded-3xl"
+                <div className="w-full border-t border-neutral-200 dark:border-neutral-700 my-2" />
+                
+                <button
+                  onClick={toggleDarkMode}
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-neutral-800 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors rounded-3xl text-left"
                 >
-                  <TbBulb className="text-lg flex-shrink-0" />
-                  <span>Dark Mode</span>
-                </Link>
+                  <div className="flex items-center gap-3">
+                    <TbBulb className="text-lg flex-shrink-0" />
+                    <span>Dark Mode</span>
+                  </div>
+                  <div className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    isDarkMode ? 'bg-neutral-700 dark:bg-neutral-400' : 'bg-gray-300 dark:bg-gray-600'
+                  }`}>
+                    <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                      isDarkMode ? 'translate-x-5' : 'translate-x-1'
+                    }`} />
+                  </div>
+                </button>
+                
                 <Link
                   href="/"
                   className="flex items-center gap-3 px-3 py-2.5 text-sm text-neutral-800 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors rounded-3xl"
