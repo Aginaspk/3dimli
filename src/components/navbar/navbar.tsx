@@ -5,7 +5,7 @@ import Search from "./search";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-20 w-full font-popins transition-transform duration-300 ease-in-out hidden lg:block">
+    <div className="fixed top-0 z-20 w-full font-popins transition-transform duration-300 ease-in-out hidden lg:block">
       <div className="relative z-10 border-b border-neutral-200/70 bg-white dark:border-transparent dark:bg-neutral-900 transition-colors duration-300 ease-in-out">
         <div className="px-2 lg:px-14 w-full">
           <div className="flex h-16 justify-between items-center sm:h-20">

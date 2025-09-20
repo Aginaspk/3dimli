@@ -3,7 +3,6 @@ import {
   TbBrandDiscordFilled,
   TbSearch,
   TbUpload,
-  TbUser,
 } from "react-icons/tb";
 import { ShinyButton } from "../ui/shiny-button";
 import ProfileDropdown from "./profileDropdown";
