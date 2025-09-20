@@ -48,7 +48,7 @@ const Hero = () => {
         {
           x: "100%",
           duration: 3,
-          repeat: -1,
+          repeat: 1,
           ease: "power2.inOut",
         }
       );
@@ -75,18 +75,18 @@ const Hero = () => {
           <Link
             href="/"
             className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors
-        text-[10px] z-[200] md:text-base font-medium py-[0.514rem] px-[0.9375rem] md:py-3.5 md:px-6
-        bg-[rgb(2,132,199)] hover:bg-[hsl(201,96.3%,32.2%)] text-neutral-50 dark:bg-transparent dark:border
-        dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 w-[156px] md:w-[15rem]
-        overflow-hidden"
+      text-[10px] z-[200] md:text-base font-medium py-[0.514rem] px-[0.9375rem] md:py-3.5 md:px-6
+      bg-[rgb(2,132,199)] hover:bg-[hsl(201,96.3%,32.2%)] text-neutral-50 dark:bg-transparent dark:border
+      dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 w-[156px] md:w-[15rem]
+      overflow-hidden"
           >
             Explore all products
             <div
+              ref={shineRef}
               className="absolute top-0 left-0 w-full h-full pointer-events-none transform -skew-x-12 opacity-60"
               style={{
                 background:
                   "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.3) 70%, transparent 100%)",
-                animation: "shine 3s infinite",
               }}
             />
           </Link>
