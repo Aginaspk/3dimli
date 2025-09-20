@@ -48,7 +48,7 @@ const Hero = () => {
         {
           x: "100%",
           duration: 3,
-          repeat: 1,
+          repeat: -1,
           ease: "power2.inOut",
         }
       );
